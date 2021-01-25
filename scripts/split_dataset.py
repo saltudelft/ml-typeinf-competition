@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 from sklearn.model_selection import train_test_split
 import os
 import pandas as pd
+import sys
 
 def list_files(directory: str) -> list:
     """
@@ -71,5 +72,7 @@ if __name__ == "__main__":
     print("Combining train, test & validation into dataframe")
     result_df = pd.concat([df_train, df_test, df_valid])
 
+    # https://stackoverflow.com/questions/36303919/python-3-0-open-default-encoding
+    # https://stackoverflow.com/questions/1052225/convert-python-filenames-to-unicode
     print("Writing dataframe to:", OUTPUT_PATH)
-    result_df.to_csv(OUTPUT_PATH, header=False, index=False)
+    result_df.to_csv(OUTPUT_PATH, header=False, index=False, encoding=sys.getfilesystemencoding())

@@ -18,10 +18,11 @@ mv duplicate_files.txt ManyTypes4Py/duplicate_files.txt
 
 # 4. Make copy of dataset without duplicates
 mv $1 repos_
-python3 process_dataset.py repos_ ManyTypes4Py/duplicate_files.txt ManyTypes4Py/repos
+python3 process_dataset.py repos_ ManyTypes4Py/duplicate_files.txt repos
 
 # 5. Split dataset files into train, test, validate
-python3 split_dataset.py ManyTypes4Py/repos --od ManyTypes4Py/dataset_split.csv
+python3 split_dataset.py repos --od ManyTypes4Py/dataset_split.csv
+mv repos ManyTypes4Py/repos
 
 # 6. Zip contents
 tar -czvf dataset.tar.gz ManyTypes4Py
